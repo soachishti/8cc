@@ -1,6 +1,22 @@
 8cc C Compiler
 ==============
 
+Move to brach "study"
+git checkout -b study
+
+Assembly Code
+./8cc study-code/helloworld.c -o helloworld.asm -S
+
+Print Preprocessed C++ Code
+./8cc study-code/helloworld.c -E
+
+Machine Code
+./8cc study-code/helloworld.c -o helloworld.cpp -c
+
+
+Introduction
+==============
+
 8cc is a compiler for the C programming language.
 It's intended to support all C11 language features
 while keeping the code as small and simple as possible.
@@ -47,6 +63,7 @@ It then compares stage2 and stage3 binaries byte-by-byte to verify
 that we reach a fixed point.
 
     make fulltest
+
 
 Author
 ------

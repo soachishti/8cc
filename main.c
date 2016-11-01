@@ -126,6 +126,7 @@ static void parseopt(int argc, char **argv) {
             break;
         case 'W': parse_warnings_arg(optarg); break;
         case 'c': dontlink = true; break;
+        case 'a': dumpast = true; break; 
         case 'f': parse_f_arg(optarg); break;
         case 'm': parse_m_arg(optarg); break;
         case 'g': break;
@@ -169,15 +170,19 @@ int main(int argc, char **argv) {
     if (atexit(delete_temp_files))
         perror("atexit");
     parseopt(argc, argv);
+    printf("Lexical Initialized\n");
     lex_init(infile);
     cpp_init();
     parse_init();
+    printf("Parser Initialized\n");
     set_output_file(open_asmfile());
     if (buf_len(cppdefs) > 0)
         read_from_string(buf_body(cppdefs));
 
-    if (cpponly)
+    if (cpponly) {
+        printf("C++ Preprocessor called\n");
         preprocess();
+    }
 
     Vector *toplevels = read_toplevels();
     for (int i = 0; i < vec_len(toplevels); i++) {
@@ -196,6 +201,7 @@ int main(int argc, char **argv) {
         pid_t pid = fork();
         if (pid < 0) perror("fork");
         if (pid == 0) {
+	    printf("Compiling assembly code\n");
             execlp("as", "as", "-o", outfile, "-c", asmfile, (char *)NULL);
             perror("execl failed");
         }
