@@ -1,17 +1,19 @@
 8cc C Compiler
 ==============
 
-Move to brach "study"
-git checkout -b study
+Step for testing.
 
-Assembly Code
-./8cc study-code/helloworld.c -o helloworld.asm -S
+* Move to branch "study"
+ * git checkout -b study
 
-Print Preprocessed C++ Code
-./8cc study-code/helloworld.c -E
+* Assembly Code
+ * ./8cc study-code/helloworld.c -o helloworld.asm -S
 
-Machine Code
-./8cc study-code/helloworld.c -o helloworld.cpp -c
+* Print Preprocessed C++ Code
+ * ./8cc study-code/helloworld.c -E
+
+* Machine Code
+ * ./8cc study-code/helloworld.c -o helloworld.cpp -c
 
 
 Introduction
